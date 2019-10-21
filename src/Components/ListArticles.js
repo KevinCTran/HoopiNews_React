@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 
 class ListArticles extends Component {
     static propTypes = {
-        articles: PropTypes.array.isRequired
+        articles: PropTypes.array.isRequired,
+        setPage: PropTypes.func.isRequired
+    }
+    
+    componentDidMount() {
+        this.props.setPage("articles")
     }
 
     render() {

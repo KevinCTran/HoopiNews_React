@@ -7,14 +7,14 @@ import RedditPage from './Components/RedditPage'
 class App extends Component {
   state = {
     articles: [],
-    currentPage: "articles"
+    currentPage: ""
   }
 
-  changeCurrentPage = () => {
-    this.setState({currentPage: this.state.currentPage === "articles" ? "reddit" : "articles"})
+  setPage = (page) => {
+    this.setState({currentPage: page})
   }
 
-  componentDidMount() {
+  getDate = () => {
     var oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 3)
 
@@ -30,10 +30,22 @@ class App extends Component {
       mm = '0' + mm
     }
 
+    var dateObject = {
+      year: yyyy,
+      month: mm,
+      day: dd
+    }
+
+    return dateObject
+  }
+
+  componentDidMount() {
+    var date = this.getDate();
+
     var newsurl = 'https://newsapi.org/v2/everything?' +
       'q=nba&' +
       'sources=espn,business-insider,bleacher-report&' +
-      'from=' + yyyy + '-' + mm + '-' + dd + '&' +
+      'from=' + date["year"] + '-' + date["month"] + '-' + date["day"] + '&' +
       'language=en&' +
       'sortBy=relevancy&' +
       'apiKey=9686d92a39f845f9aab9f7674aa08654'
@@ -57,13 +69,12 @@ class App extends Component {
       <div>
         <Header 
           currentPage={this.state.currentPage}
-          changeCurrentPage={this.changeCurrentPage}
         />
         <Route exact path="/" render={() => (
-          <ListArticles articles={this.state.articles} />
+          <ListArticles articles={this.state.articles} setPage={this.setPage} />
         )} />
         <Route path="/reddit" render={() => (
-          <h1><RedditPage /></h1> 
+          <h1><RedditPage setPage={this.setPage}/></h1> 
         )} />
       </div>
     );

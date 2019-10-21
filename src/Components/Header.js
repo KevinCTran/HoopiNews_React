@@ -9,8 +9,8 @@ const Header = (props) => {
             <img src={Icon} alt="icon" className="header-icon" /> 
             <Link 
                 to={props.currentPage === "articles" ? "/reddit" : "/"}
-                onClick={props.changeCurrentPage}>
-                {props.currentPage === "articles" ? "Reddit" : "Articles"} 
+                className='toggle-link'>
+                Switch To {props.currentPage === "articles" ? "Reddit" : "Articles"} 
             </Link>
         </div>
     )
@@ -18,7 +18,6 @@ const Header = (props) => {
 
 Header.propTypes = {
     currentPage: PropTypes.string.isRequired,
-    changeCurrentPage: PropTypes.func.isRequired
 }
 
 export default Header
