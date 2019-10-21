@@ -8,9 +8,9 @@ const Header = (props) => {
         <div className="navibar">
             <img src={Icon} alt="icon" className="header-icon" /> 
             <Link 
-                to={props.currentPage === "articles" ? "/reddit" : "/"}
+                to={props.currentPage === "articles" || props.currentPage === "" ? "/reddit" : "/"}
                 className='toggle-link'>
-                Switch To {props.currentPage === "articles" ? "Reddit" : "Articles"} 
+                Switch To {props.currentPage === "articles" || props.currentPage === "" ? "Reddit" : "Articles"} 
             </Link>
         </div>
     )

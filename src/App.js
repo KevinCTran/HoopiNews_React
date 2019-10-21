@@ -70,6 +70,9 @@ class App extends Component {
         <Header 
           currentPage={this.state.currentPage}
         />
+        <Route path="/index.html" render={() => (
+          <ListArticles articles={this.state.articles} setPage={this.setPage} />
+        )} />
         <Route exact path="/" render={() => (
           <ListArticles articles={this.state.articles} setPage={this.setPage} />
         )} />

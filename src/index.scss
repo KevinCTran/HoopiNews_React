@@ -23,17 +23,19 @@ a {
 
   .header-icon {
     object-fit: contain;
+    width: 130px;
+    height: 80px;
   }
 
   .toggle-link {
     text-align: center;
     text-decoration: none;
     background-color: orange;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: white;
     display: inline-block;
-    margin: 0rem 0rem 1rem 10rem;
-    padding: 5px 10px;
+    margin: 0rem 0rem 1rem 30rem;
+    padding: 3px 8px;
   }
 }
 
