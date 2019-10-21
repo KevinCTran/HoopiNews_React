@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
-import ListArticles from './ListArticles'
+import { Route } from 'react-router-dom'
+import Header from './Components/Header'
+import ListArticles from './Components/ListArticles'
+import RedditPage from './Components/RedditPage'
 
 class App extends Component {
   state = {
-    articles: []
+    articles: [],
+    currentPage: "articles"
+  }
+
+  changeCurrentPage = () => {
+    this.setState({currentPage: this.state.currentPage === "articles" ? "reddit" : "articles"})
   }
 
   componentDidMount() {
@@ -39,12 +47,24 @@ class App extends Component {
           })
         }
       )
+      .catch(err => {
+        console.log("Error: ", err);
+      })
   }
 
   render() {
     return (
       <div>
-        <ListArticles articles={this.state.articles} />
+        <Header 
+          currentPage={this.state.currentPage}
+          changeCurrentPage={this.changeCurrentPage}
+        />
+        <Route exact path="/" render={() => (
+          <ListArticles articles={this.state.articles} />
+        )} />
+        <Route path="/reddit" render={() => (
+          <h1><RedditPage /></h1> 
+        )} />
       </div>
     );
   }
